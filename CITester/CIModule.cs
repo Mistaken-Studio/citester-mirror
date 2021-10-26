@@ -142,7 +142,7 @@ namespace Mistaken.CITester
                             throw new Exception("Player 2 did not die|2");
                         Round.IsLocked = false;
                         this.CallDelayed(
-                            1,
+                            2,
                             () =>
                             {
                                 try
