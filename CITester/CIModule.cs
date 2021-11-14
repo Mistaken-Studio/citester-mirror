@@ -29,16 +29,16 @@ namespace Mistaken.CITester
 
         public override void OnDisable()
         {
-            Exiled.Events.Handlers.Server.WaitingForPlayers -= this.Handle(() => this.Server_WaitingForPlayers(), "WaitingForPlayers");
-            Exiled.Events.Handlers.Server.RoundStarted -= this.Handle(() => this.Server_RoundStarted(), "RoundStart");
-            Exiled.Events.Handlers.Server.RestartingRound -= this.Handle(() => this.Server_RestartingRound(), "RoundRestart");
+            Exiled.Events.Handlers.Server.WaitingForPlayers -= this.Server_WaitingForPlayers;
+            Exiled.Events.Handlers.Server.RoundStarted -= this.Server_RoundStarted;
+            Exiled.Events.Handlers.Server.RestartingRound -= this.Server_RestartingRound;
         }
 
         public override void OnEnable()
         {
-            Exiled.Events.Handlers.Server.WaitingForPlayers += this.Handle(() => this.Server_WaitingForPlayers(), "WaitingForPlayers");
-            Exiled.Events.Handlers.Server.RoundStarted += this.Handle(() => this.Server_RoundStarted(), "RoundStart");
-            Exiled.Events.Handlers.Server.RestartingRound += this.Handle(() => this.Server_RestartingRound(), "RoundRestart");
+            Exiled.Events.Handlers.Server.WaitingForPlayers += this.Server_WaitingForPlayers;
+            Exiled.Events.Handlers.Server.RoundStarted += this.Server_RoundStarted;
+            Exiled.Events.Handlers.Server.RestartingRound += this.Server_RestartingRound;
         }
 
         public int SpawnTestObject(string userId)
@@ -63,8 +63,17 @@ namespace Mistaken.CITester
                 {
                     try
                     {
-                        Player.UnverifiedPlayers.TryGetValue(ccm._hub, out Player player);
-                        Exiled.Events.Handlers.Player.OnJoined(new Exiled.Events.EventArgs.JoinedEventArgs(player));
+                        if (!Player.UnverifiedPlayers.TryGetValue(ccm._hub, out Player player))
+                        {
+                            player = new Exiled.API.Features.Player(ccm._hub);
+                            Exiled.API.Features.Player.UnverifiedPlayers.Add(ccm._hub, player);
+                            Exiled.API.Features.Player p = player;
+                            Exiled.Events.Handlers.Player.OnJoined(new Exiled.Events.EventArgs.JoinedEventArgs(player));
+
+                            // throw new Exception("Player not found");
+                        }
+
+                        // Exiled.Events.Handlers.Player.OnJoined(new Exiled.Events.EventArgs.JoinedEventArgs(player));
                         Player.Dictionary.Add(obj, player);
                         player.IsVerified = true;
                         ccm.NetworkIsVerified = true;
