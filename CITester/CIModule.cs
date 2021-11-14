@@ -214,7 +214,8 @@ namespace Mistaken.CITester
                             throw new Exception("Unexpected real players count, expected 2 but got " + RealPlayers.List.Count());
                         this.Log.Info("2 real players on server");
 
-                        GameCore.RoundStart.singleton.NetworkTimer = 2;
+                        // GameCore.RoundStart.singleton.NetworkTimer = 2;
+                        Round.Start();
                     }
                     catch (System.Exception ex)
                     {
