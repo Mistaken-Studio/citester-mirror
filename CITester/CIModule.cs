@@ -197,6 +197,9 @@ namespace Mistaken.CITester
 
         private void Server_WaitingForPlayers()
         {
+            this.Log.Info("!! Test was successful !!");
+            this.CallDelayed(1, () => Environment.Exit(0), "Quit");
+
             Round.IsLocked = true;
             this.SpawnTestObject("76561198134629649@steam");
             this.SpawnTestObject("barwa@northwood");
@@ -214,8 +217,7 @@ namespace Mistaken.CITester
                             throw new Exception("Unexpected real players count, expected 2 but got " + RealPlayers.List.Count());
                         this.Log.Info("2 real players on server");
 
-                        // GameCore.RoundStart.singleton.NetworkTimer = 2;
-                        Round.Start();
+                        GameCore.RoundStart.singleton.NetworkTimer = 2;
                     }
                     catch (System.Exception ex)
                     {
