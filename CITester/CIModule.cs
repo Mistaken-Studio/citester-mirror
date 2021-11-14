@@ -43,14 +43,13 @@ namespace Mistaken.CITester
 
         public int SpawnTestObject(string userId)
         {
-            testSubjectId++;
             Exiled.Events.Handlers.Player.OnPreAuthenticating(new Exiled.Events.EventArgs.PreAuthenticatingEventArgs(userId, null, 0, 0, "PL", 0));
             GameObject obj = UnityEngine.Object.Instantiate<GameObject>(NetworkManager.singleton.playerPrefab);
             CharacterClassManager ccm = obj.GetComponent<CharacterClassManager>();
             obj.transform.localScale = Vector3.one;
             obj.transform.position = new Vector3(0, 6000, 0);
             QueryProcessor component = obj.GetComponent<QueryProcessor>();
-            component.NetworkPlayerId = testSubjectId++;
+            component.NetworkPlayerId = ++testSubjectId;
             component._ipAddress = "127.0.0.WAN";
             ccm.CurClass = RoleType.None;
             obj.GetComponent<PlayerStats>().SetHPAmount(ccm.Classes.SafeGet(RoleType.None).maxHP);
@@ -85,6 +84,7 @@ namespace Mistaken.CITester
                             throw new Exception("INV is null");
                         if (player.ReferenceHub.inventory._hub == null)
                             throw new Exception("INV's CCM is null");
+                        this.Log.Info("Player spawned");
                     }
                     catch (Exception ex)
                     {
@@ -125,30 +125,43 @@ namespace Mistaken.CITester
                         var player1 = Player.Get(2);
                         if (player1 == null)
                             throw new Exception("Player 1 not found");
+                        this.Log.Info("Player 1 found");
                         var player2 = Player.Get(3);
                         if (player2 == null)
-                            throw new Exception("Player 1 not found");
+                            throw new Exception("Player 2 not found");
+                        this.Log.Info("Player 2 found");
                         player1.Role = RoleType.Scp173;
                         player2.Role = RoleType.ClassD;
                         player1.Hurt(10000000000, player2, DamageTypes.E11SR);
                         if (player1.IsAlive)
                             throw new Exception("Player 1 did not die");
+                        this.Log.Info("Player 1 died");
                         player1.Role = RoleType.NtfCaptain;
                         if (player1.Role != RoleType.NtfCaptain)
                             throw new Exception("Player 1 did not forceclass");
+                        this.Log.Info("Player 1 forceclassed");
+
                         player1.Hurt(80, player2, DamageTypes.E11SR);
                         if (!player1.IsAlive)
                             throw new Exception("Player 1 died when he shouldn't");
+                        this.Log.Info("Player 1 didn't die");
+
                         player1.EnableEffect<Bleeding>();
                         this.Log.Debug(player1.ReferenceHub.playerEffectsController.GetEffect<Bleeding>()?.Hub?.characterClassManager?.IsVerified ?? false, true);
                         if (!player1.GetEffectActive<Bleeding>())
                             throw new Exception("Player 1 don't have bleeding effect when he should");
+                        this.Log.Info("Player 1 have bleeding effect");
+
                         player2.DisplayNickname = "Test";
                         if (player2.GetDisplayName() != "Test")
                             throw new Exception("Player 2 nickname didn't change");
+                        this.Log.Info("Player 2's nickname changed");
+
                         player2.Kill(DamageTypes.Wall);
                         if (player2.IsAlive)
                             throw new Exception("Player 2 did not die|2");
+                        this.Log.Info("Player 2 died");
+
                         Round.IsLocked = false;
                         this.CallDelayed(
                             2,
@@ -158,6 +171,8 @@ namespace Mistaken.CITester
                                 {
                                     if (Round.IsStarted)
                                         throw new Exception("Round didn't end");
+                                    this.Log.Info("Round ended");
+
                                     this.success = true;
                                 }
                                 catch (System.Exception ex)
@@ -192,8 +207,12 @@ namespace Mistaken.CITester
                     {
                         if (Player.List.Count() != 2)
                             throw new Exception("Unexpected player count, expected 2 but got " + Player.List.Count());
+                        this.Log.Info("2 player on server");
+
                         if (RealPlayers.List.Count() != 2)
                             throw new Exception("Unexpected real players count, expected 2 but got " + RealPlayers.List.Count());
+                        this.Log.Info("2 real players on server");
+
                         GameCore.RoundStart.singleton.NetworkTimer = 2;
                     }
                     catch (System.Exception ex)
