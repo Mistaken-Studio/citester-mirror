@@ -197,9 +197,6 @@ namespace Mistaken.CITester
 
         private void Server_WaitingForPlayers()
         {
-            this.Log.Info("!! Test was successful !!");
-            this.CallDelayed(1, () => Environment.Exit(0), "Quit");
-
             Round.IsLocked = true;
             this.SpawnTestObject("76561198134629649@steam");
             this.SpawnTestObject("barwa@northwood");
