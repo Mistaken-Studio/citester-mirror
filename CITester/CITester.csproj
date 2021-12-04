@@ -68,8 +68,6 @@
     <Compile Include="PlayerIPPatch.cs" />
     <Compile Include="PlayerMovementSync_TargetForcePosition.cs" />
     <Compile Include="PlayerMovementSync_TargetSetRotation.cs" />
-    <Compile Include="PlayerStats_TargetAchieve.cs" />
-    <Compile Include="PlayerStats_TargetSyncHp.cs" />
     <Compile Include="PluginHandler.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
