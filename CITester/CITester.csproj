@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Achievements_AchievementHandlerBase_ServerAchieve.cs" />
     <Compile Include="CharacterClassManager_TargetConsolePrint.cs" />
     <Compile Include="CharacterClassManager_TargetSetRealId.cs" />
     <Compile Include="CIModule.cs" />
@@ -63,17 +64,19 @@
     <Compile Include="HintPatch.cs" />
     <Compile Include="Log_Error.cs" />
     <Compile Include="MirrorExtensions_SendFakeSyncVar.cs" />
+    <Compile Include="PlayableScps_Scp173_OnUpdate.cs" />
+    <Compile Include="PlayerStatsSystem_SyncedStatMessages_SendAllStats.cs" />
+    <Compile Include="PlayerStats_SyncedStatBase.cs" />
     <Compile Include="PlayableScps_Scp096_AddTarget.cs" />
     <Compile Include="PlayableScps_Scp096_OnDamage.cs" />
     <Compile Include="PlayerIPPatch.cs" />
     <Compile Include="PlayerMovementSync_TargetForcePosition.cs" />
     <Compile Include="PlayerMovementSync_TargetSetRotation.cs" />
-    <Compile Include="PlayerStats_TargetAchieve.cs" />
-    <Compile Include="PlayerStats_TargetSyncHp.cs" />
     <Compile Include="PluginHandler.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryProcessor_TargetSyncGameplayData.cs" />
+    <Compile Include="ServerConsole_Disconnect.cs" />
     <Compile Include="ServerRoles_TargetSetHiddenRole.cs" />
     <Compile Include="VersionCheck_TargetCheckVersion.cs" />
   </ItemGroup>

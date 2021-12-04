@@ -52,7 +52,7 @@ namespace Mistaken.CITester
             component.NetworkPlayerId = ++testSubjectId;
             component._ipAddress = "127.0.0.WAN";
             ccm.CurClass = RoleType.None;
-            obj.GetComponent<PlayerStats>().SetHPAmount(ccm.Classes.SafeGet(RoleType.None).maxHP);
+            obj.GetComponent<PlayerStatsSystem.PlayerStats>().StatModules[0].CurValue = ccm.Classes.SafeGet(RoleType.None).maxHP;
             obj.GetComponent<NicknameSync>().Network_myNickSync = $"Test subject ({testSubjectId})";
             NetworkServer.Spawn(obj);
             PlayerManager.AddPlayer(obj, CustomNetworkManager.slots);
@@ -132,7 +132,7 @@ namespace Mistaken.CITester
                         this.Log.Info("Player 2 found");
                         player1.Role = RoleType.Scp173;
                         player2.Role = RoleType.ClassD;
-                        player1.Hurt(10000000000, player2, DamageTypes.E11SR);
+                        player1.ReferenceHub.playerStats.DealDamage(new PlayerStatsSystem.CustomReasonDamageHandler("Test1", 1000000));
                         if (player1.IsAlive)
                             throw new Exception("Player 1 did not die");
                         this.Log.Info("Player 1 died");
@@ -141,7 +141,8 @@ namespace Mistaken.CITester
                             throw new Exception("Player 1 did not forceclass");
                         this.Log.Info("Player 1 forceclassed");
 
-                        player1.Hurt(80, player2, DamageTypes.E11SR);
+                        player1.ReferenceHub.playerStats.DealDamage(new PlayerStatsSystem.CustomReasonDamageHandler("Test2", 80));
+                        new PlayerStatsSystem.CustomReasonDamageHandler("Test2", 80).ApplyDamage(player1.referenceHub);
                         if (!player1.IsAlive)
                             throw new Exception("Player 1 died when he shouldn't");
                         this.Log.Info("Player 1 didn't die");
@@ -157,7 +158,7 @@ namespace Mistaken.CITester
                             throw new Exception("Player 2 nickname didn't change");
                         this.Log.Info("Player 2's nickname changed");
 
-                        player2.Kill(DamageTypes.Wall);
+                        player2.ReferenceHub.playerStats.DealDamage(new PlayerStatsSystem.CustomReasonDamageHandler("Test3"));
                         if (player2.IsAlive)
                             throw new Exception("Player 2 did not die|2");
                         this.Log.Info("Player 2 died");
