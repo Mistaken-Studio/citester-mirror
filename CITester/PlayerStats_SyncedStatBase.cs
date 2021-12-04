@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Mistaken.CITester
 {
-    [HarmonyPatch(typeof(PlayerStatsSystem.StatBase), nameof(PlayerStatsSystem.StatBase.Update))]
+    [HarmonyPatch(typeof(PlayerStatsSystem.SyncedStatBase), nameof(PlayerStatsSystem.SyncedStatBase.Update))]
     internal static class PlayerStats_SyncedStatBase
     {
         private static bool Prefix()
