@@ -132,7 +132,7 @@ namespace Mistaken.CITester
                         this.Log.Info("Player 2 found");
                         player1.Role = RoleType.Scp173;
                         player2.Role = RoleType.ClassD;
-                        new PlayerStatsSystem.CustomReasonDamageHandler("Test1", 1000000).ApplyDamage(player1.referenceHub);
+                        player1.ReferenceHub.playerStats.DealDamage(new PlayerStatsSystem.CustomReasonDamageHandler("Test1", 1000000));
                         if (player1.IsAlive)
                             throw new Exception("Player 1 did not die");
                         this.Log.Info("Player 1 died");
@@ -141,6 +141,7 @@ namespace Mistaken.CITester
                             throw new Exception("Player 1 did not forceclass");
                         this.Log.Info("Player 1 forceclassed");
 
+                        player1.ReferenceHub.playerStats.DealDamage(new PlayerStatsSystem.CustomReasonDamageHandler("Test2", 80));
                         new PlayerStatsSystem.CustomReasonDamageHandler("Test2", 80).ApplyDamage(player1.referenceHub);
                         if (!player1.IsAlive)
                             throw new Exception("Player 1 died when he shouldn't");
@@ -157,7 +158,7 @@ namespace Mistaken.CITester
                             throw new Exception("Player 2 nickname didn't change");
                         this.Log.Info("Player 2's nickname changed");
 
-                        new PlayerStatsSystem.CustomReasonDamageHandler("Test3").ApplyDamage(player2.referenceHub);
+                        player2.ReferenceHub.playerStats.DealDamage(new PlayerStatsSystem.CustomReasonDamageHandler("Test3"));
                         if (player2.IsAlive)
                             throw new Exception("Player 2 did not die|2");
                         this.Log.Info("Player 2 died");
