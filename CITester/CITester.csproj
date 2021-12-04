@@ -63,6 +63,8 @@
     <Compile Include="HintPatch.cs" />
     <Compile Include="Log_Error.cs" />
     <Compile Include="MirrorExtensions_SendFakeSyncVar.cs" />
+    <Compile Include="PlayableScps_Scp173_OnUpdate.cs" />
+    <Compile Include="PlayerStats_SyncedStatBase.cs" />
     <Compile Include="PlayableScps_Scp096_AddTarget.cs" />
     <Compile Include="PlayableScps_Scp096_OnDamage.cs" />
     <Compile Include="PlayerIPPatch.cs" />
