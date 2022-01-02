@@ -75,6 +75,7 @@
     <Compile Include="PluginHandler.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryProcessor_Start.cs" />
     <Compile Include="QueryProcessor_TargetSyncGameplayData.cs" />
     <Compile Include="ServerConsole_Disconnect.cs" />
     <Compile Include="ServerRoles_TargetSetHiddenRole.cs" />
