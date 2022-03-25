@@ -63,6 +63,7 @@
     <Compile Include="GhostMode.cs" />
     <Compile Include="HintPatch.cs" />
     <Compile Include="Log_Error.cs" />
+    <Compile Include="Log_Error2.cs" />
     <Compile Include="MirrorExtensions_SendFakeSyncVar.cs" />
     <Compile Include="PlayableScps_Scp173_OnUpdate.cs" />
     <Compile Include="PlayerStatsSystem_SyncedStatMessages_SendAllStats.cs" />

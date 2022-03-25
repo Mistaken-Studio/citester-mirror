@@ -130,13 +130,13 @@ namespace Mistaken.CITester
                         if (player2 == null)
                             throw new Exception("Player 2 not found");
                         this.Log.Info("Player 2 found");
-                        player1.Role = RoleType.Scp173;
-                        player2.Role = RoleType.ClassD;
+                        player1.Role.Type = RoleType.Scp173;
+                        player2.Role.Type = RoleType.ClassD;
                         player1.ReferenceHub.playerStats.DealDamage(new PlayerStatsSystem.CustomReasonDamageHandler("Test1", 1000000));
                         if (player1.IsAlive)
                             throw new Exception("Player 1 did not die");
                         this.Log.Info("Player 1 died");
-                        player1.Role = RoleType.NtfCaptain;
+                        player1.Role.Type = RoleType.NtfCaptain;
                         if (player1.Role != RoleType.NtfCaptain)
                             throw new Exception("Player 1 did not forceclass");
                         this.Log.Info("Player 1 forceclassed");

@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="Log_Error.cs" company="Mistaken">
+// <copyright file="Log_Error2.cs" company="Mistaken">
 // Copyright (c) Mistaken. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -11,12 +11,12 @@ using Mistaken.API.Diagnostics;
 
 namespace Mistaken.CITester
 {
-    [HarmonyPatch(typeof(Log), nameof(Log.Error), typeof(object))]
-    internal static class Log_Error
+    [HarmonyPatch(typeof(Log), nameof(Log.Error), typeof(string))]
+    internal static class Log_Error2
     {
-        private static bool Prefix(object message)
+        private static bool Prefix(string message)
         {
-            MasterHandler.LogError(new Exception(message.ToString()), null, "Error Log Catch");
+            MasterHandler.LogError(new Exception(message), null, "Error Log Catch");
             return true;
         }
     }
