@@ -27,7 +27,7 @@ namespace Mistaken.CITester
         public override PluginPriority Priority => PluginPriority.Lowest;
 
         /// <inheritdoc/>
-        public override Version RequiredExiledVersion => new Version(3, 0, 3);
+        public override Version RequiredExiledVersion => new Version(5, 0, 0);
 
         /// <inheritdoc/>
         public override void OnEnabled()
