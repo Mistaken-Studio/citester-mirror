@@ -9,10 +9,10 @@ using Mirror;
 
 namespace Mistaken.CITester
 {
-    [HarmonyPatch(typeof(PlayerMovementSync), nameof(PlayerMovementSync.TargetSetRotation))]
+    [HarmonyPatch(typeof(PlayerMovementSync), nameof(PlayerMovementSync.TargetForceRotation))]
     internal static class PlayerMovementSync_TargetSetRotation
     {
-        private static bool Prefix(NetworkConnection conn, float rot)
+        private static bool Prefix(NetworkConnection conn, float x, bool changeX, float y, bool changeY)
         {
             if (conn == null)
                 return false;
