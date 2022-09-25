@@ -62,10 +62,13 @@
     <Compile Include="CIModule.cs" />
     <Compile Include="GhostMode.cs" />
     <Compile Include="HintPatch.cs" />
+    <Compile Include="Inventory_TargetRefreshAmmo.cs" />
+    <Compile Include="Inventory_TargetRefreshItems.cs" />
     <Compile Include="Log_Error.cs" />
     <Compile Include="Log_Error2.cs" />
     <Compile Include="MirrorExtensions_SendFakeSyncVar.cs" />
     <Compile Include="PlayableScps_Scp173_OnUpdate.cs" />
+    <Compile Include="PlayerEffectsController_TargetRpcReceivePulse.cs" />
     <Compile Include="PlayerStatsSystem_SyncedStatMessages_SendAllStats.cs" />
     <Compile Include="PlayerStats_SyncedStatBase.cs" />
     <Compile Include="PlayableScps_Scp096_AddTarget.cs" />
@@ -73,6 +76,7 @@
     <Compile Include="PlayerIPPatch.cs" />
     <Compile Include="PlayerMovementSync_TargetForcePosition.cs" />
     <Compile Include="PlayerMovementSync_TargetSetRotation.cs" />
+    <Compile Include="PlayerStats_TargetReceiveSpecificDeathReason.cs" />
     <Compile Include="PluginHandler.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
