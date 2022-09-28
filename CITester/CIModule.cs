@@ -211,10 +211,6 @@ namespace Mistaken.CITester
                             throw new Exception("Unexpected player count, expected 2 but got " + Player.List.Count());
                         this.Log.Info("2 player on server");
 
-                        if (RealPlayers.List.Count() != 2)
-                            throw new Exception("Unexpected real players count, expected 2 but got " + RealPlayers.List.Count());
-                        this.Log.Info("2 real players on server");
-
                         GameCore.RoundStart.singleton.NetworkTimer = 2;
                     }
                     catch (System.Exception ex)
